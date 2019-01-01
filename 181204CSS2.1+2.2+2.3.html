@@ -1,0 +1,586 @@
+<!DOCTYPE html> <!--并不是标签，声明文档类型，必须放第一行-->
+<html>
+
+<head>
+    <meta http-equiv="Content" content="text/html;charse=utf-8"/>
+	<title>css字体和文本样式</title>
+
+   <style type="text/css">
+          /*文字字体：
+            英文字体包含空格时或者是中文字体时要用英文状态下的双引号""括起
+
+            字体属性值可以一个可以多个，多个字体用英文逗号,隔开，好处是最终用哪种字体由浏览器去依次寻找，比如此处浏览器找不到微软雅黑就会去找宋体，宋体也没就去找黑体，黑体没有就用浏览器默认字体
+
+            引号嵌套，外使用双引号，内使用单引号（此知识点在body里使用行内样式时涉及，而此处是用内部样式表设置样式）
+          */
+          h1{font-family:"Times New Roman";} 
+          p{font-family:"微软雅黑","宋体","黑体",sans-serif;}
+
+
+          /*文字大小*/
+          /*对应下方body里绝对单位*/
+          .in{font-size:0.5in;}
+          .cm{font-size:0.5cm;}
+          .mm{font-size:5mm;}
+          .pt{font-size:15pt;}
+          .pc{font-size:2pc;}
+
+          .xxsmall{font-size:xx-small;}
+          .xsmall{font-size:x-small;}
+          .small{font-size:small;}
+          .medium{font-size:medium;}
+          .large{font-size:large;}
+          .xlarge{font-size:x-large;}
+          .xxlarge{font-size:xx-large;}
+
+          /*对应下方body里相对单位*/
+          h3{font-size:50px;}
+
+          .larger{font-size:large;}
+          .smaller{font-size:smaller;}
+
+          .em{font-size:2em;}  /*假如上方给p标签设置了50px，此处又设置了2em，那么文字大小为2乘以50等于100大小*/
+          .percent{font-size:150%;}  /*结合下方body处*/
+
+          /* #fontsize{font-size:20px;}  结合下方body处，比如把上放设置了的样式去掉，把此处注释去掉，则效果就是div和div里的元素字体大小都变成20px，说明了字体大小可以继承 */ 
+          /* .percent{font-size:150%;}  结合下方body处，和上一行的样式设置，仅把此两行注释去掉，其他样式都删掉，则效果就是设置了id的p标签的字体大小为30px，20乘以150%=30px，说明了是继承父元素的计算值 */ 
+
+
+          
+          /*文字颜色*/
+          h4{color:red;} /*具体颜色名称*/
+
+          .rgbcolor{color:rgb(0,255,0);} /* 用rgb，括号里面用逗号隔开，可以用数值也可以百分比方式。数字：0～255；百分比：0%～100% | 注：小于0会修正为0，超过255会修正为255；小于0%会修正为0%，超过100%会修正为100% */
+          .rgbcolor1{color:rgb(0%,0%,255%);} /*rgb三原色：r代表red，g代表绿色，b代表蓝色，此处b满值其他两个没有所以为蓝色*/
+          .sljzcolor{color:#008800;} /* 十六进制：#开头，六位，0～F | 另外，像此处008800这种规律的可以简写成080，计算机会读取成008800*/
+
+
+         /*文字粗细*/
+         .normal{font-weight:normal;}  /*normal：font-weight默认值，等于没设置*/
+         .bold{font-weight:bold;}  /*bold：加粗显示*/
+         .bolder{font-weight:bolder;} /*bolder：更粗*/
+         .lighter{font-weight:lighter;} /*lighter：更细*/
+         .f100{font-weight:100;}
+         .f200{font-weight:200;}
+         .f300{font-weight:300;}
+         .f400{font-weight:400;} /*400等同于normal*/
+         .f500{font-weight:500;}
+         .f600{font-weight:600;}
+         .f700{font-weight:700;} /*700等同于bold*/
+         .f800{font-weight:800;}
+         .f900{font-weight:900;}
+         /*由于开发中这些效果看着区别不是很大，实际开发中用bold(或者700)较多*/
+
+
+         /*文字样式*/
+         .normal{font-style:normal;} /*normal：font-style默认值*/
+         .italic{font-style:italic;} /*italic：斜体*/ 
+         .oblique{font-style:oblique;} /*oblique：倾斜*
+
+         /*文字变形*/
+         .fontvariantnoraml{font-variant:normal;} /*normal：font-variant默认值*/
+         .smallcaps{font-variant:small-caps;} /*把英文内容效果都变成小型大写字母*/
+
+         上方为css文字设置
+        ————————————————————————————————————————————————————————————————————————————————————————————————
+         下方为css文本设置
+
+          /*文本水平对齐方式：
+            结合下方body处设置，此方法为用css设置样式。
+          */
+          .text1{text-align:left;}
+          .text2{text-align:center;}
+          .text3{text-align:right;}
+          .text4{text-align:justify;}
+ 
+          div{text-align:center;}  /*此处为注意点展示，结合body处。涉及text-align属性只对块级元素有效 知识点*/
+
+          /* body{text-align:right;}
+             因为上方几个样式设置还在，此设置不展示效果，故注释掉。效果是所有body里的内容都右对齐。
+          */
+
+          .textalign{text-align:center;} /*相应div里那段文字是居中的*/
+
+          .textalign p{width:50%;} 
+          .textalign p{width:50%;margin:0 auto;} 
+          /*这儿我们要的效果是宽度为50% 整体居中（并非仅仅文本内容）显示，如果没有设置margin和auto，可能在有些高级浏览器中显示的是文本左对齐居中，没有全部元素居中*/
+          /*text-align是针对文本的对齐方式，继承的是对元素相应的内容设置对齐方式（此处相应内容就是textalign下的p标签），但在ie浏览器版本中，对齐会应用在此元素内所有的后代元素上，元素本身也会居中显示（即ie浏览器中可以看见整体居中效果，即使没有写上margin和auto）。我们除了想文字居中，也想元素在不同浏览器中也居中显示，所以要写上margin和auto*/
+          /*所以上方代码解释：margin：上下边距为0   auto：左右边距自动。通过这个设置可以使容器（此处即设置了class为textalign的div）居中显示*/
+          /*因为text-align只对块级元素有效，所以想给p标签文字设置水平方式居中的话，要在p外加块级元素div，给div设置对齐方式居中即可，但这样会导致虽然文本内容居中了，但整体在不同浏览器会有不同的显示，如火狐等浏览器会左对齐居中，所以要想整块都居中显示，需要加上margin和auto*/
+
+
+          /*文本垂直对齐方式*/
+          .sub{vertical-align: sub;}
+          .super{vertical-align: super;}
+
+          .baseline{vertical-align: baseline;}
+          .top{vertical-align: top;}
+          .texttop{vertical-align: text-top;}
+          .middle{vertical-align: middle;}
+          .textbottom{vertical-align: text-bottom;}
+          .bottom{vertical-align: bottom;}
+
+          td{height:80px; width:100px;}
+
+          .warp{height:400px;
+                width:100%;
+                border:1px blue solid;  /*这里表示设置：1像素蓝色边框*/
+
+                text-align:center;  /*单行文字水平居中:用所学过的text-align即可*/
+                line-height:400px;  /*单行文字垂直居中:只需把line-height设置成与元素高度一样，即与height一样的值*/
+
+
+                display:table;  /*多行文字垂直居中(联系下方 content的display:table-cell;样式设置意思是：在表格下是它的单元格）*/
+               }
+
+          .content{vertical-align:middle; /*本来这里给class为content的div设置垂直居中是无效的，因为div不是行内/单元格元素，配合上一句和下一句即可有效*/
+                   display:table-cell; /*多行文字垂直居中(联系上方 warp的display:table;样式设置意思是：把元素转化成单元格元素）*/
+
+                   text-align:center; /*多行文字水平居中也是用此句*/
+                  }
+
+
+          /*行高*/
+          /*此处行高属性值用值px设置*/
+          .texthg3{text-indent:2em;line-height:25px;} /* 此处设置效果为首行缩进2em；行高25px */
+
+          /*此处行高属性值用em或百分比%设置，下方两行对比效果显示，用em或百分比设置行高时，行高会随着字体大小变化而变化，上一个如果也设置字体大小看区别，可能会出现重叠现象，所以实际开发设置行高用em较多。*/
+          .texthg3{font-size:14px;text-indent:2em;line-height:1.3em;} /* 此处设置效果为字体大小14px;首行缩进2em；行高1.3em（此处行高值=14乘以1.3=18.2px）*/
+          .texthg3{font-size:30px;text-indent:2em;line-height:1.3em;} /* 此处设置效果为字体大小14px;首行缩进2em；行高1.3em（此处行高值=30乘以1.3=39px）  */
+
+          .texthg3{font-size:14px;text-indent:2em;line-height:100%;} /* 此处设置效果为字体大小14px;首行缩进2em；行高100%（此处行高值=100%乘以14=14px）*/
+
+          .texthg4{line-height:1em;} /* 没有给第四段设置字体大小，那字体大小在谷歌浏览器里默认为16px
+          .texthg4{line-height:16px;} 浏览器有默认行高，不同浏览器默认行高不一样，一般是120%
+          .texthg4{line-height:100%;} 这三种值在默认字体大小为16px情况下，行高也是16px  因为效果是（行与行距离会缩小：因为浏览器默认行高不一样）一致的，不都演示，所以注释 */
+      
+          .contenthg{line-height:1.3em;} /*此句配合body处展示出的效果说明了line-height是可以继承的*/
+          
+          .contenthg{font-size:20px;line-height:1.3em;}
+          .texthg3{font-size:30px;} /*这两句效果会出现第三段文字会重叠，因为第三段并没有直接继承了字体20px，行高1.3em。而是继承了计算后的值，所以第三段内容的字体大小是自己设置过的30px，行高继承了class为contenthg的div的20乘以1.3em=26px */
+          .texthg3{font-size:30px;line-height:1.3em;} 
+          /*如何给第三段也设置1.3em的行高呢？在有上方.contenthg{font-size:20px;line-height:1.3em;}已给div设置了行高（结合body知道第三段在这个div里，所以继承性）情况下，如果想第三段的行高也是1.3em，那么要给该句重新设置行高，比如该句*/
+
+          
+          /*间距*/
+          .jjword{word-spacing:10px;}
+          .jjletter{letter-spacing:10px;}
+
+          /*此处证明可以正负值，可以em或px 
+          .jjword{word-spacing:10em;}
+          .jjletter{letter-spacing:-10px;}
+          */
+
+
+          /*大小写*/
+          .capitalize{text-transform:capitalize;}
+          .uppercase{text-transform:uppercase;}
+          .lowercase{text-transform:lowercase;}
+          .none{text-transform:none}
+
+
+          /*装饰*/
+          .underline{text-decoration:underline;}
+          .overline{text-decoration:overline;}
+          .line-through{text-decoration:line-through;}
+          .blink{text-decoration:blink;} /*因为blink有兼容性问题，所以展示出来效果并没有闪烁*/
+          .nonezs{text-decoration:none;}
+
+          a{text-decoration:none;} /*该句设置效果为a标签没有默认的下划线了*/
+
+          .dgzssxz{text-decoration:underline overline;}
+          .dgzssxznone{text-decoration:underline overline none;} /*设置多个装饰属性值，如最后加了个none，效果则是会把之前设置的样式属性清空*/
+          
+          /* 会影响前面的效果，此处不演示所以注释了,结合body里相应同内容。
+             .overline{color:red;text-decoration:overline;} 效果是class为overline的p标签有红色的上划线
+             .span{color:blue;text-decoration:underline;} 效果是class为overline的p标签里的span里的内容有下划线，也有上划线，值得一提的是，此上划线并不是它自己的（因为text-decoration这个属性不能继承），而是p标签的上划线
+          */
+   </style>
+</head>
+
+<body>
+      <pre>
+      文字：颜色、字体大小、字体、加粗等
+      样式属性：
+              字体：font-family 定义元素内文字以什么字体来显示
+                   语法：font-family:[字体1][,字体2][,...]
+                   属性值：具体字体名，字体集
+                   字体集：serif
+                          sans-serif （较上个，字体多了装饰线，多用于标题文字，上个由于简易读些多用于大段文字中）
+                          <img src="181204CSS2.1ztjsant.jpg" width="20%" height="20%"/><!--区别请看图-->
+
+                          monospace
+                          cursive
+                          fantasy
+                  （不同字体集有不同的文字装饰效果）
+
+              大小：font-size 定义元素内文字大小
+                   语法：font-size:绝对单位|相对单位
+                  （绝对单位在任何分辨率显示下大小不会发生改变，都是绝对的大小。但不推荐使用，因为在各种浏览器中显示的大小呈现不一样。其（第二组属性值）属性值之间的换算是根据一定的缩放系数来确定--css2缩放系数1.2）
+                  （相对单位不像绝对大小不能随浏览器分辨率或父元素大小的改变而改变）
+                   
+
+                   绝对单位属性值：in      Inch，英寸。1英寸=2.54厘米
+                                 cm      1厘米=0.394英寸
+                                 mm      1毫米=0.1厘米
+                                 pt      磅，印刷的点数。72磅=1英寸
+                                 pc      Pica，1pc=12pt
+
+                                 xx-small       9px   
+                                 x-small       11px
+                                 small         13px
+                                 medium        16px    一般浏览器默认大小为mudium 16px
+                                 large         19px
+                                 x-large       23px
+                                 xx-large      28px 
+
+                   相对单位属性值：px 像素
+                                 em/%
+                               （em和%都是针对于父元素，如果父元素没有设置大小那就是（使用）相当于父元素是浏览器默认大小）
+                                 
+              颜色：font-color 定义元素内文字颜色
+                   语法：color:颜色名|十六进制|RGB
+                   （这么多颜色属性值不用都记住，可以通过查询“web安全色”来获知）
+
+              粗细：font-weight 为元素内文字设置粗细
+                   语法：font-weight：normal|bold|bolder|lighter|100~900
+
+              样式：font-style 为元素内文字设置样式
+                   语法：font-style:normal|italic|oblique
+
+              变形：font-variant 设置元素中文本为小型大写字母
+                   语法：font-variant:normal|small-caps
+                   （注意：只针对英文内容）
+
+
+
+
+
+      文本：行高、对齐方式、文本装饰等
+      样式属性：
+              对齐方式：text-align 设置元素内文本的水平对齐方式
+                   语法：text-align:left|right|center|justify
+                   注意：该属性只对块级元素设置有效；有继承性。比如想用此法设置图片居中对齐，需要在img标签外嵌套上div标签，然后设置div标签居中对齐（因为text-align有继承性，所以img可以继承div的居中对齐）。也因为img标签不是块级元素，而div是块级元素所以才要嵌套。另外知识点：span标签也不是块级元素
+
+              对齐方式：vertical-align 设置元素内容的垂直方式
+                   语法：vertical-align:baseline|sub|super|top|text-top|middle|bottom|text-bottom|长度|百分比
+                   注意：该属性只对行内元素生效，对块级元素不生效；span标签是行内元素，p标签是块级元素
+                   属性值解释：该属性定义行内元素的基线相对于该元素所在行的基线的垂直对齐方式
+                   另外：垂直对齐方式除了应用于行内元素外，还可应用于单元格元素
+
+              行高：line-height 设置元素中文本行高
+                   语法：line-height:长度值|百分比
+                   注意：用长度值设置行高的话，如果也设置了字体大小font-size，当行高小于字体大小时文本内容会发生重叠。说明了当字体大小发生变化行高不变的话，不同字体大小预览效果时行与行之间的距离不一样。
+                        要想无论字体大小如何变化，行高也随之发生变化，可以使用em或者百分比%。em和%与字体大小有关系
+                        该属性有继承性，值得一提的是，此继承的是计算后的值，不是直接把em或%的值继承过来
+
+              间距：word-spacing 设置元素内单词之间间距 注意：单词的判断以空格为准
+                   letter-spacing 设置元素内字母之间间距
+                   属性值可以是px也可以是em，可以正值也可以负值。默认值是0
+
+              大小写：text-transform 设置元素内文本的大小写
+                   属性值：capitalize 每个首字母大写
+                          uppercase 将字母设置成大写
+                          lowercase 将字母设置成小写
+                          none 无任何设置效果
+
+              装饰：text-decoration 设置元素内文本的装饰
+                   属性值：underline 下划线（例如之前学过的a标签默认就有的下划线 可以用这个设置）
+                          overline 上划线
+                          line-through 贯穿线（和删除线效果一样）
+                          blink 闪烁效果 (有兼容性问题，知道有此属性值就可以)
+                          none 无任何设置效果，是该属性默认值
+                   注意：同一个内容可以设置多个属性值，属性值和属性值之间用空格隔开
+                        可应用于所有元素上（块级元素、行内元素）
+                        此属性不能继承       
+      </pre>
+      ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：字体字体|
+
+      <h2><font face="宋体" color="red" size="20px">这里是文字，只有几个字</font></h2>
+      <!--由于html4.0版本已经不赞成使用font标签，且xhtml1.0版本不支持，现已用css样式代替font标签。此处只做了解-->
+      <br/><hr/><br/>
+
+
+      <h1 style="font-family:'宋体'";>这里是文字，只有几个字</h1>
+      <!--回顾之前行内样式：如：<h1 style="coclor:red;">行内样式</h1> 
+          此处设置字体就用font-family：“字体名或字体集”；，但此处多了引号，因为字体值用中文或者有空格英文时需要引号括起来
+      -->
+
+      ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：字体大小|
+      <!--绝对单位-->
+      <p>当不设置字体大小时，默认为浏览器默认值</p>
+      <p class="in">文字大小是0.5in</p>
+      <p class="cm">文字大小是0.5cm</p>
+      <p class="mm">文字大小是5mm</p>
+      <p class="pt">文字大小是15pt</p>
+      <p class="pc">文字大小是2pc</p>
+
+      <p class="xxsmall">文字大小是xx-small</p>
+      <p class="xsmall">文字大小是x-small</p>
+      <p class="small">文字大小是small</p>
+      <p class="medium">文字大小是medium</p>
+      <p class="large">文字大小是large</p>
+      <p class="xlarge">文字大小是x-large</p>
+      <p class="xxlarge">文字大小是xx-large</p>
+
+
+      <!--相对单位-->
+      <h3>文字大小px，受显示器分辨率影响</h3>
+      
+      <p>文字大小<span class="larger">相对父元素文字大小变大</span></p>
+      <p>文字大小<span class="smaller">相对父元素文字大小变小</span></p>
+
+      <div id="fontsize">
+         <p>文字大小<span class="em">相对值em</span></p>  <!--假如head处给p标签设置了：p{font-size:50px;}另又给此设了2em，那么此处的“相对值em”文字大小为2乘以50等于100大小，是其父元素p的两倍-->
+         <p class="percent">文字大小<span>相对值%</span></p> <!--此处p元素的父元素是div，但div未设置字体大小，所以用浏览器默认大小（谷歌浏览器为16px）计算p标签字体大小：16px乘以150%=24px-->
+         <p class="percent">文字大小<span class="percent">相对值%</span></p>  <!--此处较上一行不同的是，此处“相对值%”除了继承来的计算值30px外，还有自身设置了的class的150%（结合head处可知）-->
+      </div>
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：字体颜色|
+      <h4>字体颜色设置详情看head处</h4>
+
+      <h4 class="rgbcolor">字体颜色设置有三种写法</h4>
+      <h4 class="rgbcolor1">字体颜色设置有三种写法</h4>
+      <div class="sljzcolor">字体颜色设置演示</div>
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：字体加粗|
+      <p class="ztjc1"><b>之前学过的通过html标签：b 加粗</b></p>
+      <p class="ztjc2"><strong>之前学过的通过html标签：strong 加粗</strong></p>
+
+      <p class="normal">字体粗细：font-weight：normal</p>
+      <p class="bolder">字体粗细：font-weight：bolder</p>
+      <p class="bold">字体粗细：font-weight：bold</p>
+      <p class="lighter">字体粗细：font-weight：lighter</p>
+
+      <p class="f100">字体粗细：font-weight：100</p>
+      <p class="f200">字体粗细：font-weight：200</p>
+      <p class="f300">字体粗细：font-weight：300</p>
+      <p class="f400">字体粗细：font-weight：400</p>
+      <p class="f500">字体粗细：font-weight：500</p>
+      <p class="f600">字体粗细：font-weight：600</p>
+      <p class="f700">字体粗细：font-weight：700</p>
+      <p class="f800">字体粗细：font-weight：800</p>
+      <p class="f900">字体粗细：font-weight：900</p>
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：字体样式|
+      <p><em>之前学过的通过html标签：em 斜体</em></p>
+      <p><i>之前学过的通过html标签：i 斜体</i></p>
+
+      <p class="normal">正常的字体<p>
+      <p class="italic">斜体<p>  <!--开发中这个较常用-->
+      <p class="oblique">倾斜<p>
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：字体变形|
+      <p class="fontvariantnoraml">这里相当于没设置时效果（默认效果）嗯嗯DaXIE</p>
+      <p class="smallcaps">字体变形只针对英文内容,变成都是小型的大写字母ZheLiShiYInGWenZiMu</p>
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      
+
+上方为文字内容（大部分均需结合head处）
+～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
+下方为文本内容（大部分均需结合head处）
+
+
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：文本水平对齐方式|
+      <!--也就是说此处同样的效果可以用下方三种方法设置-->
+      <p align="left">未学过css前也可以设置对齐方式，就像这里怎样设置。此处回顾知识点，左对齐</p>
+      <p align="center">未学过css前也可以设置对齐方式，就像这里怎样设置。此处回顾知识点，居中对齐</p>
+      <p align="right">未学过css前也可以设置对齐方式，就像这里怎样设置。此处回顾知识点，右对齐</p>
+      <p align="justify">未学过css前也可以设置对齐方式，就像这里怎样设置。此处回顾知识点，两端对齐</p>
+
+      <p style="text-align:left;">回顾：此处为行内样式设置对齐方式，样式属性。上方是align属性，两种都是写在p标签内，没能做到css和表现分离</p>
+      <!--所以下方用了内部样式（具体看head处）来设置，而外部样式表也可以达到css和表现分离的效果，但此处就不展示了-->
+      <!--也就是说同样的效果可以用以上两种加下方一种方法设置-->
+
+      <p class="text1">这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字</p>   
+
+      <p class="text2">这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字</p>
+
+      <p class="text3">这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字</p>
+
+      <p class="text4">这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字这里是文本，一大段字</p> 
+
+      <div><img src="181204CSS2.2text-align.jpg" width="50%" height="50%"/></div> <!--结合head处-->
+
+      <div class="textalign">
+           <p>因为text-align只对块级元素有效，所以想给p标签文字设置水平方式居中的话，要在p外加块级元素div，给div设置对齐方式居中即可，但这样会导致虽然文本内容居中了，但整体在不同浏览器会有不同的显示，如火狐等浏览器会左对齐居中，所以要想整块都居中显示，需要加上margin和auto</p>
+      </div> 
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————   
+      |此块内容：文本垂直对齐方式|
+      <!--sub和super值-->
+      <!--上下标移动的距离由浏览器决定-->
+      <p>这联系head处，设置了垂直对齐方式，因为span为行内元素，所以生效，效果是span包着的”sub“变成下标样式<span class="sub">sub</span></p>
+      <p class="sub">这里虽然也设置了class为sub的垂直对齐方式样式，但不生效，因为p标签不是行内元素<span>sub</span></p>
+
+      <p>这联系head处，设置了垂直对齐方式，因为span为行内元素，所以生效，效果是span包着的”super“变成上标样式<span class="super">super</span></p>
+
+
+      <!--top|text-top|middle|bottom|text-bottom值-->
+      这五个值的效果如图：
+      <img src="css2.3chuizhidqfs.jpg" width="20%" height="50%"/>
+      具体每个值效果代码如下（配合head对应处）
+
+      <p>
+         观察span内文字的不同
+         <span>这没设置值</span>
+         <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+      <br/><br/><!--为了展示效果看得清楚些-->
+
+      <p>
+         baseline：垂直对齐方式默认值 和上个没有设置样式的效果一样
+         <span class="baseline">基线baseline</span>
+         <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+      <br/><br/><!--为了展示效果看得清楚些-->
+
+      <p>
+         top：元素的顶端和行内最高元素顶端对齐
+         <span class="top">顶端对齐top</span>
+         <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+      <br/><br/><!--为了展示效果看得清楚些-->
+
+      <p>
+         texttop：与文本的顶端对齐
+         <span class="texttop">文本的顶端对齐texttop</span>
+         <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+      <br/><br/><!--为了展示效果看得清楚些-->
+
+      <p>
+         middle：与中部（中线）对齐
+         <span class="middle">中部对齐middle</span>
+         <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+      <br/><br/><!--为了展示效果看得清楚些-->
+
+      <p>
+         textbottom：元素的底部与文本底端对齐
+         <span class="textbottom">文字底端对齐textbottom</span>
+         <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+      <br/><br/><!--为了展示效果看得清楚些-->
+
+      <p>
+         bottom：元素的底端与行内最低元素底端对齐
+         <span class="bottom">底端对齐bottom</span>
+         <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+      <br/><br/><!--为了展示效果看得清楚些-->
+
+      这些属性值也可以用在图片上，图片也是个行内元素，比如：
+      <!--此个把图片也和中部对齐了，和上方middle处效果就不一样了-->
+      <p>
+         middle：与中部（中线）对齐
+         <span class="middle">中部对齐middle</span>
+         <img src="css2.3chuizhidqfsjx.jpg" class="middle"/>
+      </p>
+
+      <!--长度和百分比-->
+      <!--不同于sub和super，长度和百分比可以精确控制文字上下移动的幅度-->
+      <p>
+        长度下移在数字前写负（减）号“-” 上移就把“-”删掉
+        <span style="vertical-align:-15px;">长度值</span>
+        <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+
+       <p>
+        百分比下移也是在数字前写负（减）号“-” 上移就把“-”删掉
+        <span style="vertical-align:-100%;">百分比</span>
+        <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+
+      <p style="line-height: 1.5em;">
+        这里的100%相当于移动了1.5em。如果p标签没有设置行高：line-height，那它移动距离是根据基线与设置的数值去变动的（此处的话就是基于基线的100%距离）
+        <span style="vertical-align:100%;">百分比</span>
+        <img src="css2.3chuizhidqfsjx.jpg"/>
+      </p>
+
+
+
+      <!--垂直对齐方式还可应用于单元格元素-->
+      <table border="1px" cellspacing="0" class="one" >
+            <tr>
+                <td class="top"><span>top</span></td>
+                <td class="middle"><span>middle</span></td>
+                <td class="bottom"><span>bottom</span></td>
+            </tr>
+      </table>
+
+      <br/><br/>
+
+
+
+      <!--垂直居中应用：单行文字垂直居中
+                     多行文字垂直居中
+      -->
+      <div class="warp">
+          <p>这里是单行文字</p>
+      </div>
+
+      <!--
+      <div class="warp">
+         <p>这里错误示范多行文字垂直居中<br/>用br换行这样是达不到多行文字一块儿垂直居中的</p>
+      </div>
+      -->
+
+      <div class="warp">
+           <div class="content">
+                <img src="css2.3chuizhidqfsjx.jpg"/>
+                <h1>这里是多行文字，效果要水平、垂直居中</h1>
+                <h2>多行文字水平、垂直都居中如何做，看下方说明</h2>
+           </div>
+      </div>
+
+      说明：
+      想把calss为content里的内容垂直居中，不能直接给此class设置垂直居中，因为垂直居中vertical-align只对行内元素和单元格元素起作用，   对块级元素div无用。这里也不能把div换成span去设置，虽然span是行内元素，但是行内元素里不能放块级元素，此处h1和h2都是块级元素。
+      所以此时要达到效果的办法是：在原本无效的代码：.content{vertical-align:middle;}里加入display:table-cell;   同时，在父元素（此即class为warp的div元素）css样式设置里要加上display:table;     意思是把元素转化成单元格元素，在表格下是它的单元格。
+
+      简单地说，就是垂直居中如何给块级元素div也有效呢？那就是加入display：table-cell； 以及 display：table；
+
+      想把class为content里的内容水平居中，直接给此class设置text-align:center
+      这样，即可达到水平居中和垂直居中的效果
+———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————  
+      |此块内容：行高|
+      <h5>这里是行高标题</h5>
+      <div class="contenthg">
+           <p class="texthg1">第一段</p>
+           <p class="texthg2">第二段</p>
+           <p class="texthg3">给第三段文字设置行高，行高是一行与一行的距离，文字足够多，表现才看得出来</p>
+           <p class="texthg4">第三段</p>
+      </div>
+———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：间距|
+      <p class="jjnocss">这一段不弄样式，拿来对比效果（this is English）</p>
+      <p class="jjword">虽 然 是 中 文 但 也 有 间 距 的 效 果 ， 因 为 这 里 有 空 格（this is English）</p>
+      <p class="jjletter">结合头部head可知，这里是每个字母都有间距了，包括中文，因为浏览器判断中英文是看空格的，这段文字没有空格所以当成字母处理（this is English）</p>
+———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：大小写|
+      <p>这个没有设置效果(zhe li shi yiNgwen)</p>
+      <p class="capitalize">每个首字母大写(zhe li shi yiNgwen)，shou-zimu</p>
+      <p class="uppercase">将字母设置成大写(zhe li shi yiNgwen)</p>
+      <p class="lowercase">将字母设置成小写(zhe li shi yiNgwen)</p>
+      <p class="none">相当于没有设置(zhe li shi yiNgwen)</p>
+———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      |此块内容：装饰|
+      <p>这个没有设置效果(zhe li shi yiNgwen)</p>
+      <p class="underline">下划线效果(zhe li shi yiNgwen)</p>
+      <p class="overline">上划线效果(zhe li shi yiNgwen)</p>
+      <p class="line-through">贯穿线效果(zhe li shi yiNgwen)</p>
+      <p class="blink">本应有闪烁效果(zhe li shi yiNgwen)</p>
+      <p class="nonezs">这个相当于没有设置效果(zhe li shi yiNgwen)</p>
+
+      <a href="#">要想把a标签默认的下划线去掉只要给该标签设置text-decoration为none即可</a>
+
+      <p class="dgzssxz">此处设置多个装饰属性值效果(zhe li shi yiNgwen)</p>
+      <p class="dgzssxznone">此处设置多个装饰属性值效果,比上句多设了none所以等于没设置效果了(zhe li shi yiNgwen)</p>
+
+      <!-- <p class="overline">会影响前面的效果，此处不演示所以注释了，结合head里相应同内容。<span>(zhe li shi yiNgwen)</span></p> -->
+
+</body>
+
+</html>
